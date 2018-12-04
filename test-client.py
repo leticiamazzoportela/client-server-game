@@ -8,8 +8,14 @@ def isnumber(value):
          return False
     return True
 
-def showMsg():
+def showModos():
     print(colored('{:=^40}'.format('\n>: VAMOS JOGAR PEDRA-PAPEL-TESOURA-LAGARTO-SPOCK!!!'), 'cyan'))
+    print(colored('''Modos de Jogo:
+    [ A ] Partida Única
+    [ B ] Melhor de 3
+    [ C ] Melhor de 5\n''', 'cyan'))
+
+def showMsg():
     print(colored('''Sua opções:
     [ 0 ] Pedra
     [ 1 ] Papel
@@ -41,7 +47,15 @@ with socket.socket() as s:
                         for linha in f:
                             print(colored(linha, 'yellow'))
                 elif msg == 'jogar\n':
+                    # showModos()
+                    # msg = sys.stdin.readline() # enviar mensagem
+                    
+                    # if isnumber(msg):
+                        # print(colored('\n>: Opção não reconhecida! Tente novamente.', 'magenta'))
+                    # else:
                     showMsg()
+                        # s.send(msg.encode())
+
                 else:
                     if not isnumber(msg):
                         print(colored('\n>: Opção não reconhecida! Tente novamente.', 'magenta'))

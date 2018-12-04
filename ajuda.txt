@@ -2,13 +2,13 @@
 Regras do Jogo Pedra - Papel - Tesoura - Lagarto - Spock:
             - Tesoura corta papel 
             - Papel cobre pedra 
-            - Pedra esmaga lagarto 
-            - Lagarto envenena Spock 
+            - Pedra esmaga lagarto
+            - Lagarto envenena Spock
             - Spock esmaga (ou derrete) tesoura
-            - Tesoura decapita lagarto 
-            - Lagarto come papel 
-            - Papel refuta Spock 
-            - Spock vaporiza pedra 
+            - Tesoura decapita lagarto
+            - Lagarto come papel
+            - Papel refuta Spock
+            - Spock vaporiza pedra
             - Pedra quebra tesoura
 
 >: Digite 'jogar' para iniciar o jogo ou 'sair' para encerrar.

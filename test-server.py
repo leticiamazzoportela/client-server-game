@@ -47,27 +47,40 @@ def run(conn):
             if len(conns) > 1:
                 aux.append(format(c.getpeername()).split(", ")[1].split(")")[0])
                 if c is not conn: # exceto para o que a enviou 
-                    c.send('{}: {}'.format(conn.getpeername(), data.decode()).encode('utf-8'))
+                    # c.send('{}: {}'.format(conn.getpeername(), data.decode()).encode('utf-8'))
 
                     if msg == "sair\n":
                         c.send(colored('>>: Cliente {} Saiu...', 'magenta').format(conn.getpeername()).encode('utf-8'))
                         conns.remove(c)
                         break
             
-                    if msg != "sair\n" and msg != "ajuda\n" and msg != "jogar" and isnumber(msg):
-                        msgs[id] = msg
+                    if msg != "sair\n" and msg != "ajuda\n" and msg != "jogar":
+                        if isnumber(msg):
+                            msgs[id] = msg
+                        # else:
+                        #     data2 = conn.recv(1024) # receber informacao
+                        #     if not data: # se o cliente tiver desligado
+                        #         break
+                            
+                        #     msg2 = data2.decode()
+                        #     print(format(msg2).encode())
             else:
                 c.send(colored('''>>: Você não pode jogar sozinho! Espere alguém se conectar e informe sua opção de jogo: ''', 'magenta')
                 .encode('utf-8')) 
-            
         
         if len(aux) >= 2 and aux[0] in msgs.keys() and aux[1] in msgs.keys():
-            retorno = game(aux[0], int(msgs[aux[0]]), aux[1], int(msgs[aux[1]]))
+            retorno, vencedor = game(aux[0], int(msgs[aux[0]]), aux[1], int(msgs[aux[1]]))
             palpites = showPalpites(aux[0], int(msgs[aux[0]]), aux[1], int(msgs[aux[1]]))
             msgs.clear()
+
             for c in conns:
                 c.send('{}'.format(palpites).encode('utf-8'))
-                c.send('{}'.format(retorno).encode('utf-8'))
+
+                if vencedor == format(c.getpeername()).split(", ")[1].split(")")[0]:
+                    c.send('{}'.format('>>: Você venceu!!!').encode('utf-8'))
+                else:
+                    c.send('{}'.format(retorno+'\nVocê perdeu :(').encode('utf-8'))
+                
                 c.send(colored('''\n>>: Para jogar novamente, digite 'jogar' ou 'sair' para encerrar:''', 'cyan')
                 .encode('utf-8')) 
 
@@ -92,7 +105,7 @@ with socket.socket() as sock: # conexoes TCP
         threading.Thread(target=run, args=(conn,)).start() 
 
 # TODO
-#1 Mostrar p/ a pessoa que ela quem ganhou
+#1 Mostrar p/ a pessoa que ela quem ganhou -> +/-
 #2 tentar fazer o negócio de pontuação (aí tem que colocar nome)
 #4 ver se consigo adicionar mais uma pessoa
 #5 Se eu inicio um cara primeiro, mas coloco a primeira opcao de jogo no que iniciei por segundo, ele buga
