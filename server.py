@@ -60,7 +60,7 @@ def run(conn):
                         break
             
                     if msg != "sair\n" and msg != "ajuda\n" and msg != "jogar":
-                        if isnumber(msg):
+                        if isnumber(msg) and int(msg) <= 4:
                             msgs[id] = msg
                         # else:
                         #     data2 = conn.recv(1024) # receber informacao
@@ -74,6 +74,7 @@ def run(conn):
                 .encode('utf-8')) 
         
         if len(aux) >= 2 and aux[0] in msgs.keys() and aux[1] in msgs.keys():
+            print('valores: ', aux)
             retorno, vencedor = game(aux[0], int(msgs[aux[0]]), aux[1], int(msgs[aux[1]]))
             palpites = showPalpites(aux[0], int(msgs[aux[0]]), aux[1], int(msgs[aux[1]]))
             msgs.clear()

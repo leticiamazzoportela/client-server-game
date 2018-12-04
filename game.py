@@ -15,7 +15,7 @@ def game(id1, palpite1, id2, palpite2):
         else:
             return ('>>: O jogador '+id1+' VENCEU!!!', id1)
     elif palpite2 == 2: # Tesoura
-        if palpite1 == 3:
+        if palpite1 == 3 or palpite1 == 1:
             return ('>>: O jogador '+id2+' VENCEU!!!', id2)
         else:
             return ('>>: O jogador '+id1+' VENCEU!!!', id1)

@@ -1,8 +1,5 @@
 Jogo Cliente-Servidor Pedra-Papel-Tesoura-Lagarto-Spock
 
-- setup:
-    pip install
-
 - Execução Servidor:
     python server.py
 

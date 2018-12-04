@@ -1,7 +1,7 @@
 # Cliente
 # Autora: Letícia Mazzo
 # Data de Criação: 26/11/2018
-# Data de Modificação: 04/12/2018
+# Data de Modificação: 05/12/2018
 
 import socket, threading, sys, select
 from termcolor import colored
@@ -48,7 +48,7 @@ with socket.socket() as s:
                     s.close()
                     sys.exit()
                 elif msg == 'ajuda\n':
-                    with open('ajuda.txt', 'r') as f:
+                    with open('help.txt', 'r') as f:
                         for linha in f:
                             print(colored(linha, 'yellow'))
                 elif msg == 'jogar\n':
@@ -62,7 +62,7 @@ with socket.socket() as s:
                         # s.send(msg.encode())
 
                 else:
-                    if not isnumber(msg):
+                    if not isnumber(msg) or int(msg) >= 5:
                         print(colored('\n>: Opção não reconhecida! Tente novamente.', 'magenta'))
                 
                 sys.stdout.flush()
