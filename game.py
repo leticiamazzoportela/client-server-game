@@ -1,3 +1,8 @@
+# Função para verificar quem venceu a partida
+# Autora: Letícia Mazzo
+# Data de Criação: 26/11/2018
+# Data de Modificação: 04/12/2018
+
 def game(id1, palpite1, id2, palpite2):
     if palpite2 == 0: # Pedra
         if palpite1 == 2 or palpite1 == 3:

@@ -1,3 +1,8 @@
+# Servidor TCP
+# Autora: Letícia Mazzo
+# Data de Criação: 26/11/2018
+# Data de Modificação: 04/12/2018
+
 import socket, threading
 from game import game
 from termcolor import colored

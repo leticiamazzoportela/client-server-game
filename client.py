@@ -1,3 +1,8 @@
+# Cliente
+# Autora: Letícia Mazzo
+# Data de Criação: 26/11/2018
+# Data de Modificação: 04/12/2018
+
 import socket, threading, sys, select
 from termcolor import colored
 
